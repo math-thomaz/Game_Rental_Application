@@ -6,5 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum AddressType {
+    HOME("Home"),
+    WORKPLACE("Workplace");
 
+    private final String description;
 }

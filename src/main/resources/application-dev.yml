@@ -1,0 +1,18 @@
+server:
+  error:
+    include-stacktrace: on_param
+
+spring:
+  application:
+    name: rentalapp
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database_rentalapp
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true

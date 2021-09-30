@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "tb_users")
 public class User {
 
     @Id
@@ -28,7 +30,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String identity;
 
     @Column(nullable = false, unique = true)
@@ -43,10 +45,11 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Phone> phones;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Address> addresses;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "default 'USER'" )
+    @ColumnDefault("USER")
     private UserType userType;
 
 }
